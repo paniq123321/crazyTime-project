@@ -1,7 +1,13 @@
 import { useEffect, useRef, useState } from "react";
 import { useRouletteStore } from "../../../stores";
 
-export const RouletteComponent = ({ rouletteSvg, data }) => {
+export const RouletteComponent = ({
+  rouletteSvg,
+  data,
+}: {
+  rouletteSvg: any;
+  data: any;
+}) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const isSpinning = useRouletteStore((state) => state.isSpinning);
   const setIsSpinning = useRouletteStore((state) => state.setIsSpinning);
@@ -71,7 +77,7 @@ export const RouletteComponent = ({ rouletteSvg, data }) => {
       const elapsed = timestamp - start;
       const duration = 3000;
       const progress = Math.min(elapsed / duration, 1);
-      const eased = 1 - Math.pow(1 - progress, 3); // easeOutCubic
+      const eased = 1 - Math.pow(1 - progress, 3);
       const currentAngle = (totalRotation * eased * Math.PI) / 180;
 
       setAngle(currentAngle);

@@ -1,8 +1,10 @@
 import { inputList } from "../../../data";
-import { useBalanceStore } from "../../../stores/use-balance-store.ts";
+import { useBalanceStore } from "../../../stores";
 
 export function ControllersComponent() {
   const setBet = useBalanceStore((state) => state.setBet);
+  const balance = useBalanceStore((state) => state.balance);
+  const all_bet = useBalanceStore((state) => state.all_bet);
 
   return (
     <div className="mx-[2.6rem]">
@@ -22,8 +24,8 @@ export function ControllersComponent() {
             <button
               className="cursor-pointer font-bold"
               onClick={() => {
-                if (!option) return;
-                setBet({ option, id, bet: "100" });
+                if (!option || all_bet >= balance) return;
+                setBet({ option, id, bet: 100 });
               }}
             >
               <span className="relative z-10">{option}</span>

@@ -1,7 +1,9 @@
-import { type JSX, useEffect } from "react";
-import { useRouletteStore } from "../../../stores";
-import { useBalanceStore } from "../../../stores/use-balance-store.ts";
-import { useTimerStore } from "../../../stores/use-timer-store.ts";
+import type { JSX } from "react";
+import {
+  useRouletteStore,
+  useTimerStore,
+  useBalanceStore,
+} from "../../../stores";
 
 const pachinco_history = (
   <img
@@ -309,10 +311,10 @@ type SpecialSvg = Record<string, JSX.Element>;
 
 export function StatisticsComponent() {
   const balance = useBalanceStore((state) => state.balance);
-  const bet = useBalanceStore((state) => state.bet);
   const timer = useTimerStore((state) => state.timer);
   const result = useRouletteStore((state) => state.result);
   const sliced_timer = timer < 10 ? "0" + timer : timer;
+  const all_bet = useBalanceStore((state) => state.all_bet);
   return (
     <div className="grid grid-cols-3 text-center  m-6 mx-[2.6rem] font-bold items-center">
       <div className="text-left flex justify-evenly gap-4">
@@ -322,12 +324,7 @@ export function StatisticsComponent() {
         </div>
         <div className="p-2 bg-[#1a1a1a99] rounded-full flex flex-col justify-center items-center w-[7rem] border-[1px] border-[#fff6]">
           <span className="text-[.5rem] uppercase font-light">Total bet</span>
-          <span className="text-[.9rem] text-[#fbdc01]">
-            {bet.reduce((acc, curr) => {
-              return acc + parseFloat(curr.bet);
-            }, 0)}
-            $
-          </span>
+          <span className="text-[.9rem] text-[#fbdc01]">{all_bet}$</span>
         </div>
       </div>
       <div className="flex justify-center">

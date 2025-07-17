@@ -1,0 +1,55 @@
+@import "tailwindcss";
+
+
+:root {
+    --dark: #000;
+    --light: #fff;
+    --1: rgb(40,142,244);
+    --2: rgb(255,204,0);
+    --5: rgb(0,153,51);
+    --10: rgb(204,0,0);
+    --ch: green;
+    --p: pink;
+    --cf: darkblue;
+    --ct: red;
+}
+
+
+.one{
+    background-color: var(--1);
+}
+.two{
+    background-color: var(--2);
+}
+.five{
+    background-color: var(--5);
+}
+.ten{
+    background-color: var(--10);
+}
+.ch{
+    background-color: var(--ch);
+}
+.p{
+    background-color: var(--p);
+}
+.cf{
+    background-color: var(--cf);
+}
+.ct{
+    background-color: var(--ct);
+}
+
+
+
+
+body {
+    background-color: var(--dark);
+    color: var(--light);
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

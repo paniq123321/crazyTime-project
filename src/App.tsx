@@ -15,5 +15,4 @@ function App() {
     </div>
   );
 }
-//<GameComponent />
 export default App;

@@ -15,7 +15,7 @@ type RouletteState = {
 };
 
 export const useBalanceStore = create<RouletteState>((set) => ({
-  balance: "1000$",
+  balance: "1000",
   bet: [],
 
   setBalance: (value) => set({ balance: value }),
@@ -27,7 +27,9 @@ export const useBalanceStore = create<RouletteState>((set) => ({
         const updatedBet = [...state.bet];
         updatedBet[existingIndex] = {
           ...updatedBet[existingIndex],
-          ...newBet,
+          bet: (
+            parseFloat(updatedBet[existingIndex].bet) + parseFloat(newBet.bet)
+          ).toString(),
         };
         return { bet: updatedBet };
       }
@@ -39,4 +41,9 @@ export const useBalanceStore = create<RouletteState>((set) => ({
     set((state) => ({
       bet: state.bet.filter(({ id }) => id !== idToRemove),
     })),
+  setClearBets: () => {
+    set(() => ({
+      bet: [],
+    }));
+  },
 }));

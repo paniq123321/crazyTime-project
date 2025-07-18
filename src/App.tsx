@@ -4,15 +4,18 @@ import { StatisticsComponent } from "./components/statistic";
 import { Timeline } from "./timeline";
 import crazyTime from "./assets/crazyTime.svg";
 import { rouletteData } from "./data";
+import { PachincoComponent } from "./components/pachinco";
 
 function App() {
   return (
     <div className="w-[800px] h-[800px] bg-blue-300">
-      <RouletteComponent rouletteSvg={crazyTime} data={rouletteData} />
-      <StatisticsComponent />
-      <ControllersComponent />
-      <Timeline />
+      <PachincoComponent />
     </div>
   );
 }
 export default App;
+
+// <RouletteComponent rouletteSvg={crazyTime} data={rouletteData} />
+// <StatisticsComponent />
+// <ControllersComponent />
+// <Timeline />

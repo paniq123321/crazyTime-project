@@ -4,41 +4,49 @@ import type { InputList } from "./model";
 export const inputList: InputList[] = [
   {
     option: "1",
+    multiplier: 1,
     id: "one",
     style: { backgroundColor: "rgb(40,142,244)" },
   },
   {
     option: "2",
+    multiplier: 2,
     id: "two",
     style: { backgroundColor: "rgb(255,204,0)" },
   },
   {
     option: "5",
+    multiplier: 5,
     id: "five",
     style: { backgroundColor: "rgb(0,153,51)" },
   },
   {
     option: "10",
+    multiplier: 10,
     id: "ten",
     style: { backgroundColor: "rgb(204,0,0)" },
   },
   {
     option: "cash hunt",
     id: "ch",
+    multiplier: 0,
     style: { backgroundColor: "green" },
   },
   {
     option: "coin flip",
+    multiplier: 0,
     id: "cf",
     style: { backgroundColor: "darkblue" },
   },
   {
     option: "pachinco",
+    multiplier: 0,
     id: "p",
     style: { backgroundColor: "pink" },
   },
   {
     option: "crazy time",
+    multiplier: 0,
     id: "ct",
     style: { backgroundColor: "red" },
   },

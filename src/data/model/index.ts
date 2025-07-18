@@ -20,6 +20,7 @@ interface StyleType {
 
 export type InputList = {
   id: string;
+  multiplier: number;
   option?: string;
   image?: ImagePropsLocal;
   style: StyleType;

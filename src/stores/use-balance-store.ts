@@ -26,6 +26,7 @@ export const useBalanceStore = create<RouletteState>((set) => ({
   setBet: (newBet) =>
     set((state) => {
       state.all_bet += newBet.bet;
+      state.balance -= newBet.bet;
       const existingIndex = state.bet.findIndex((b) => b.id === newBet.id);
       if (existingIndex !== -1) {
         const updatedBet = [...state.bet];

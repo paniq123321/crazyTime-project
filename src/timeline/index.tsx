@@ -18,7 +18,7 @@ export const Timeline = () => {
 
   useEffect(() => {
     setTimer(real_timer - 1);
-    if (real_timer === 0) {
+    if (real_timer === 0 && result[0].multiplier) {
       setIsSpinning(true);
       setTimer(30);
     }
@@ -29,7 +29,7 @@ export const Timeline = () => {
     const win = bet.filter(({ id }) => id === result[0].ids);
     if (win.length) {
       setBalance(balance + win[0].bet * (parseFloat(win[0].option) + 1));
-      setClearBets();
     }
+    setClearBets();
   }, [result]);
 };

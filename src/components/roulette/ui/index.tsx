@@ -96,9 +96,12 @@ export const RouletteComponent = ({
           data[index < 0 ? data.length - 1 : index].option.toString() || "";
         const ids =
           data[index < 0 ? data.length - 1 : index].id.toString() || "";
+        const multiplier =
+          data[index < 0 ? data.length - 1 : index].multiplier.toString() || 0;
         setResult({
-          ids: ids,
+          ids,
           res: result,
+          multiplier,
         });
       }
     };

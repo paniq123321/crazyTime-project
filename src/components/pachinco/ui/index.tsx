@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useRouletteStore } from "../../../stores";
 
 function yesOrNo() {
   const num = Math.floor(Math.random() * 2);
@@ -13,7 +14,6 @@ const multiplier_arr = [
 function findWin(x: number) {
   const index = Math.round((x + 20.4) / 3.4);
   const safeIndex = Math.max(0, Math.min(index, multiplier_arr.length - 1));
-  console.log("x:", x.toFixed(2), "index:", safeIndex);
   return multiplier_arr[safeIndex];
 }
 
@@ -24,6 +24,11 @@ const triangle = Array.from({ length: rows }, (_, rowIndex) =>
 export function PachincoComponent() {
   const [x, setX] = useState(0);
   const [y, setY] = useState(0);
+
+  const setLastMultiplier = useRouletteStore(
+    (state) => state.setLastMultiplier,
+  );
+  const setCloseGame = useRouletteStore((state) => state.setCloseGame);
 
   useEffect(() => {
     let count = 0;
@@ -42,12 +47,13 @@ export function PachincoComponent() {
 
   useEffect(() => {
     if (y >= 45) {
-      console.log(findWin(x));
+      setLastMultiplier(findWin(x));
+      setCloseGame();
     }
   }, [y]);
 
   return (
-    <div className="flex flex-col h-full justify-center relative">
+    <div className="flex flex-col h-full justify-center absolute z-10 top-0 left-0 right-0  bg-red-400">
       <ul className="flex flex-col items-center justify-center gap-[2rem]">
         {triangle.map((row, rowIndex) => (
           <li key={rowIndex} className="flex gap-[3rem] justify-center ">

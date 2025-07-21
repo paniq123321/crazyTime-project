@@ -7,13 +7,17 @@ type ResultItem = {
 };
 
 type RouletteState = {
+  gameOpen: string;
   isSpinning: boolean;
   result: ResultItem[];
   setIsSpinning: (value: boolean) => void;
   setResult: (value: ResultItem) => void;
+  setLastMultiplier: (value: number) => void;
+  setCloseGame: () => void;
 };
 
 export const useRouletteStore = create<RouletteState>((set) => ({
+  gameOpen: "",
   isSpinning: false,
   result: [
     { ids: "one", res: "1", multiplier: 1 },
@@ -27,5 +31,21 @@ export const useRouletteStore = create<RouletteState>((set) => ({
   ],
 
   setIsSpinning: (value) => set({ isSpinning: value }),
-  setResult: (value) => set((state) => ({ result: [value, ...state.result] })),
+  setResult: (value) =>
+    set((state) => ({
+      gameOpen: value.res,
+      result: [value, ...state.result],
+    })),
+  setCloseGame: () =>
+    set(() => ({
+      gameOpen: "",
+    })),
+
+  setLastMultiplier: (value) =>
+    set((state) => ({
+      result: [
+        { ...state.result[0], multiplier: value },
+        ...state.result.slice(1),
+      ],
+    })),
 }));

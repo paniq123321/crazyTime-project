@@ -1,12 +1,13 @@
 import { useEffect } from "react";
 import { inputList } from "../../../data";
-import { useBalanceStore } from "../../../stores";
+import { useBalanceStore, useRouletteStore } from "../../../stores";
 
 export function ControllersComponent() {
   const setBet = useBalanceStore((state) => state.setBet);
   const balance = useBalanceStore((state) => state.balance);
   const bet_value = useBalanceStore((state) => state.bet_value);
   const bet = useBalanceStore((state) => state.bet);
+  const isSpinning = useRouletteStore((state) => state.isSpinning);
 
   useEffect(() => {
     console.log(bet);
@@ -28,6 +29,7 @@ export function ControllersComponent() {
             key={id}
           >
             <button
+              disabled={isSpinning}
               className="cursor-pointer font-bold"
               onClick={() => {
                 if (!option || !balance || bet_value > balance) return;

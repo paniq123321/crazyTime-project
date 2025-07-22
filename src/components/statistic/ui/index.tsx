@@ -334,24 +334,12 @@ export function StatisticsComponent() {
       </div>
       <ul className="grid grid-cols-4 text-center gap-2">
         {result.slice(0, 8).map(({ res, ids }, key) => {
-          const specialIds = ["ch", "p", "ct", "cf"];
-
-          const specialSvg: SpecialSvg = {
-            ch: cash_hunt_history,
-            p: pachinco_history,
-            ct: crazy_time_history,
-            cf: blue_coin_flip,
-          };
-
-          // @ts-ignore
-          const index = specialIds.includes(ids) ? specialSvg[ids] : res;
-
           return (
             <li
               key={key}
-              className={`${specialIds.includes(ids) ? "" : ids} h-[2rem] leading-[2rem] text-[1.2rem] rounded-sm flex items-center justify-center`}
+              className={`${ids} h-[2rem] leading-[2rem] text-[1.2rem] rounded-sm flex items-center justify-center`}
             >
-              {index}
+              {res}
             </li>
           );
         })}

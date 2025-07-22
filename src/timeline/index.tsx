@@ -10,7 +10,6 @@ export const Timeline = () => {
 
   const result = useRouletteStore((state) => state.result);
   const bet = useBalanceStore((state) => state.bet);
-  const balance = useBalanceStore((state) => state.balance);
   const setBalance = useBalanceStore((state) => state.setBalance);
   const setClearBets = useBalanceStore((state) => state.setClearBets);
 
@@ -25,10 +24,10 @@ export const Timeline = () => {
   }, [timer]);
 
   useEffect(() => {
-    if (!result.length || !bet.length || !result[0].multiplier) return;
+    if (!result.length || !bet.length) return;
     const win = bet.filter(({ id }) => id === result[0].ids);
     if (win.length) {
-      setBalance(balance + win[0].bet * (result[0].multiplier + 1));
+      setBalance(Number(win[0].bet * (Number(win[0].option) + 2)));
     }
     setClearBets();
   }, [result]);

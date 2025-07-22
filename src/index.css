@@ -1,6 +1,9 @@
 @import "tailwindcss";
 
 
+body{
+    user-select: none;
+}
 :root {
     --dark: #000;
     --light: #fff;
@@ -14,7 +17,9 @@
     --ct: red;
 }
 
-
+.st0{
+    fill:#ffffff;
+}
 .one{
     background-color: var(--1);
 }

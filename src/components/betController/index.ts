@@ -1,0 +1,1 @@
+export { BetControllerComponent } from "./ui";

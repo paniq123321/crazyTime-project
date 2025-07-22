@@ -10,18 +10,22 @@ type RouletteState = {
   balance: number;
   bet: BetType[];
   all_bet: number;
+  bet_value: number;
   setBalance: (value: number) => void;
   setBet: (value: BetType) => void;
   setRemoveBet: (value: string) => void;
   setClearBets: () => void;
+  setBetValue: (value: number) => void;
 };
 
 export const useBalanceStore = create<RouletteState>((set) => ({
   balance: 1000,
   bet: [],
   all_bet: 0,
+  bet_value: 100,
 
-  setBalance: (value) => set({ balance: value }),
+  setBalance: (value) =>
+    set((state) => ({ balance: value + (state.balance - state.all_bet) })),
 
   setBet: (newBet) =>
     set((state) => {
@@ -36,7 +40,6 @@ export const useBalanceStore = create<RouletteState>((set) => ({
         };
         return { bet: updatedBet };
       }
-
       return { bet: [...state.bet, newBet] };
     }),
 
@@ -49,5 +52,10 @@ export const useBalanceStore = create<RouletteState>((set) => ({
       all_bet: 0,
       bet: [],
     }));
+  },
+  setBetValue: (value) => {
+    set({
+      bet_value: value,
+    });
   },
 }));
